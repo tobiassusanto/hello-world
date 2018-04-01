@@ -4,23 +4,13 @@ const express = require ('express')
 // execute express
 const app = express ()
 
-// fungsi helloworld
-const helloWorld = (request, respond) =>
-// get root request
-app.get('/', (request, respond) =>
-    respond.send ('Hello World!')
-)
+// import routes dari config/routes
+const router = require('./config/routes')
 
-app.get ('/:name/:address', (req, res)=>{
-    const {name, address} = req.params
-    
-    res
-      .status (200)
-      .json ({
-          name,
-          address,
-      })
-})
+// add router to express
+app.use('/', router)
+
+// set express to running on port 3000
 app.listen (3000)
 
 
